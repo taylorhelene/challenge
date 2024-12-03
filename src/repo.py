@@ -37,15 +37,14 @@ class Repository:
             raise Exception("Repository already exists!")
 
     def add(self, file_name):
-        """Stage a file, provided the file exists and isn't ignored."""
-        if file_name in self.ignore_list:
-            raise Exception(f"File '{file_name}' is ignored and cannot be added.")
-        if not os.path.exists(file_name):
-            raise FileNotFoundError(f"File '{file_name}' not found.")
+        # Check if the file exists in the repository directory
+        file_path = os.path.join(self.repo_dir, file_name)
+        if not os.path.exists(file_path):
+            raise Exception(f"File '{file_name}' not found in repository directory.")
+        
         with open(self.stage_file, 'r+') as f:
             staged = json.load(f)
-            if file_name not in staged:
-                staged.append(file_name)
+            staged.append(file_name)
             f.seek(0)
             json.dump(staged, f, indent=4)
 
