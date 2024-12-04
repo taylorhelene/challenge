@@ -1,0 +1,22 @@
+{
+    "main": [
+        {
+            "file": "file1.txt",
+            "content": "\"Initial content\" \n"
+        }
+    ],
+    "feature_branch": [
+        {
+            "file": "file1.txt",
+            "content": "\"Initial content\" \n"
+        },
+        {
+            "file": "featue.txt",
+            "content": "\"Hello Feature Branch\" \n"
+        },
+        {
+            "file": "file1.txt",
+            "content": "\"Initial content\" \n"
+        }
+    ]
+}

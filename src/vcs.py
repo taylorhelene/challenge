@@ -5,14 +5,10 @@ import argparse
 # Add the src directory to the system path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-import argparse
-from colorama import Fore, Style, init
-
-# Add the src directory to the system path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from src.repo import Repository
 from src.utils import display_progress, display_message
+from colorama import Fore, Style, init
 
 # Initialize colorama
 init(autoreset=True)
@@ -47,6 +43,11 @@ def main():
     parser_branch.add_argument("repo_name", help="Repository name")
     parser_branch.add_argument("branch_name", help="Branch to create")
 
+    # Switch branches
+    parser_switch = subparsers.add_parser("switch_branch")
+    parser_switch.add_argument("repo_name", help="Repository name")
+    parser_switch.add_argument("branch_name", help="Branch to switch to")
+
     # Clone a repository
     parser_clone = subparsers.add_parser("clone")
     parser_clone.add_argument("repo_name", help="Repository name to clone")
@@ -56,13 +57,32 @@ def main():
     parser_log = subparsers.add_parser("log")
     parser_log.add_argument("repo_name", help="Repository name")
 
+    # Merge branches
+    parser_merge = subparsers.add_parser("merge")
+    parser_merge.add_argument("repo_name", help="Repository name")
+    parser_merge.add_argument("branch_name", help="Branch to merge into current branch")
+
+    # View differences between branches
+    parser_diff = subparsers.add_parser("diff")
+    parser_diff.add_argument("repo_name", help="Repository name")
+    parser_diff.add_argument("branch_name", help="Branch to compare against the current branch")
+
+    # Ignore files
+    parser_ignore = subparsers.add_parser("ignore")
+    parser_ignore.add_argument("repo_name", help="Repository name")
+    parser_ignore.add_argument("file_name", help="File to add to the ignore list")
+
+    # View ignored files
+    parser_view_ignore = subparsers.add_parser("view_ignore_list")
+    parser_view_ignore.add_argument("repo_name", help="Repository name")
+
     args = parser.parse_args()
 
     # Default to interactive if no command was passed
     if not args.command:
         print(Fore.YELLOW + "No command passed. Switching to interactive mode.")
         while True:
-            print(Fore.MAGENTA + "Choose an action: init, add, commit, branch, clone, log, or exit")
+            print(Fore.MAGENTA + "Choose an action: init, add, commit, branch, switch_branch, clone, log, merge, diff, ignore, view_ignore_list, or exit")
             command = input(Fore.GREEN + "Command: ").strip().lower()
 
             if command == "init":
@@ -73,51 +93,71 @@ def main():
             elif command == "add":
                 repo_name = get_input("Enter repository name")
                 file_name = get_input("Enter file name")
-                try:
-                    repo = Repository(repo_name)
-                    repo.add(file_name)
-                    print(Fore.GREEN + f"File '{file_name}' staged.")
-                except Exception as e:
-                    print(Fore.RED + str(e))
+                repo = Repository(repo_name)
+                repo.add(file_name)
+                print(Fore.GREEN + f"File '{file_name}' staged.")
             elif command == "commit":
                 repo_name = get_input("Enter repository name")
                 message = get_input("Enter commit message")
-                try:
-                    repo = Repository(repo_name)
-                    repo.commit(message)
-                    display_progress("Committing changes", steps=3)
-                    print(Fore.GREEN + f"Commit added: {message}")
-                except Exception as e:
-                    print(Fore.RED + str(e))
+                repo = Repository(repo_name)
+                repo.commit(message)
+                display_progress("Committing changes", steps=3)
+                print(Fore.GREEN + f"Commit added: {message}")
             elif command == "branch":
                 repo_name = get_input("Enter repository name")
                 branch_name = get_input("Enter branch name")
-                try:
-                    repo = Repository(repo_name)
-                    repo.create_branch(branch_name)
-                    print(Fore.GREEN + f"Branch '{branch_name}' created.")
-                except Exception as e:
-                    print(Fore.RED + str(e))
+                repo = Repository(repo_name)
+                repo.create_branch(branch_name)
+                print(Fore.GREEN + f"Branch '{branch_name}' created.")
+            elif command == "switch_branch":
+                repo_name = get_input("Enter repository name")
+                branch_name = get_input("Enter branch name")
+                repo = Repository(repo_name)
+                repo.switch_branch(branch_name)
+                print(Fore.GREEN + f"Switched to branch '{branch_name}'.")
             elif command == "clone":
                 repo_name = get_input("Enter repository name")
                 new_name = get_input("Enter new repository name")
-                try:
-                    repo = Repository(repo_name)
-                    repo.clone(new_name)
-                    display_progress("Cloning repository", steps=5)
-                    print(Fore.GREEN + f"Repository '{repo_name}' cloned as '{new_name}'.")
-                except Exception as e:
-                    print(Fore.RED + str(e))
+                repo = Repository(repo_name)
+                repo.clone(new_name)
+                display_progress("Cloning repository", steps=5)
+                print(Fore.GREEN + f"Repository '{repo_name}' cloned as '{new_name}'.")
             elif command == "log":
                 repo_name = get_input("Enter repository name")
+                repo = Repository(repo_name)
+                history = repo.view_commit_history()
+                print(Fore.CYAN + "Commit History:")
+                for commit in history:
+                    print(Fore.YELLOW + f" - {commit['date']}: {commit['message']}")
+            elif command == "merge":
+                repo_name = get_input("Enter repository name")
+                branch_name = get_input("Enter branch to merge")
+                repo = Repository(repo_name)
                 try:
-                    repo = Repository(repo_name)
-                    history = repo.view_commit_history()
-                    print(Fore.CYAN + "Commit History:")
-                    for commit in history:
-                        print(Fore.YELLOW + f" - {commit['date']}: {commit['message']}")
+                    repo.merge(branch_name)
+                    print(Fore.GREEN + f"Branch '{branch_name}' merged successfully.")
                 except Exception as e:
                     print(Fore.RED + str(e))
+            elif command == "diff":
+                repo_name = get_input("Enter repository name")
+                branch_name = get_input("Enter branch to compare")
+                repo = Repository(repo_name)
+                diff = repo.diff(branch_name)
+                print(Fore.CYAN + "Differences:")
+                print(Fore.YELLOW + diff)
+            elif command == "ignore":
+                repo_name = get_input("Enter repository name")
+                file_name = get_input("Enter file to ignore")
+                repo = Repository(repo_name)
+                repo.ignore(file_name)
+                print(Fore.GREEN + f"File '{file_name}' added to the ignore list.")
+            elif command == "view_ignore_list":
+                repo_name = get_input("Enter repository name")
+                repo = Repository(repo_name)
+                ignored_files = repo.view_ignore_list()
+                print(Fore.CYAN + "Ignored Files:")
+                for file in ignored_files:
+                    print(Fore.YELLOW + f" - {file}")
             elif command == "exit":
                 print(Fore.RED + "Exiting program.")
                 break
@@ -125,37 +165,49 @@ def main():
                 print(Fore.RED + "Invalid command, please try again.")
         return
 
-    # Map commands to repository actions
+    # Execute commands based on parsed arguments
+    repo = Repository(args.repo_name)
     try:
         if args.command == "init":
-            repo_name = args.repo_name or get_input("Enter repository name", "my_repo")
-            repo = Repository(repo_name)
             repo.create_repo()
-            print(Fore.GREEN + f"Repository '{repo_name}' initialized.")
+            print(Fore.GREEN + f"Repository '{args.repo_name}' initialized.")
         elif args.command == "add":
-            repo = Repository(args.repo_name)
             repo.add(args.file_name)
             print(Fore.GREEN + f"File '{args.file_name}' staged.")
         elif args.command == "commit":
-            repo = Repository(args.repo_name)
             repo.commit(args.message)
             display_progress("Committing changes", steps=3)
             print(Fore.GREEN + f"Commit added: {args.message}")
         elif args.command == "branch":
-            repo = Repository(args.repo_name)
             repo.create_branch(args.branch_name)
             print(Fore.GREEN + f"Branch '{args.branch_name}' created.")
+        elif args.command == "switch_branch":
+            repo.switch_branch(args.branch_name)
+            print(Fore.GREEN + f"Switched to branch '{args.branch_name}'.")
         elif args.command == "clone":
-            repo = Repository(args.repo_name)
             repo.clone(args.new_name)
             display_progress("Cloning repository", steps=5)
             print(Fore.GREEN + f"Repository '{args.repo_name}' cloned as '{args.new_name}'.")
         elif args.command == "log":
-            repo = Repository(args.repo_name)
             history = repo.view_commit_history()
             print(Fore.CYAN + "Commit History:")
             for commit in history:
                 print(Fore.YELLOW + f" - {commit['date']}: {commit['message']}")
+        elif args.command == "merge":
+            repo.merge(args.branch_name)
+            print(Fore.GREEN + f"Branch '{args.branch_name}' merged successfully.")
+        elif args.command == "diff":
+            diff = repo.diff(args.branch_name)
+            print(Fore.CYAN + "Differences:")
+            print(Fore.YELLOW + diff)
+        elif args.command == "ignore":
+            repo.ignore(args.file_name)
+            print(Fore.GREEN + f"File '{args.file_name}' added to the ignore list.")
+        elif args.command == "view_ignore_list":
+            ignored_files = repo.view_ignore_list()
+            print(Fore.CYAN + "Ignored Files:")
+            for file in ignored_files:
+                print(Fore.YELLOW + f" - {file}")
         else:
             parser.print_help()
     except Exception as e:
