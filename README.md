@@ -666,8 +666,8 @@ python src/vcs.py clone  my_repo clone
 using the above format for usage here is the output
 
 
-![Command Output](images/vcs-logo.png) 
-![Command Output](images/vcs-logo.png) 
+![Command Output](https://raw.githubusercontent.com/taylorhelene/challenge/refs/heads/main/images/usage2.PNG?token=GHSAT0AAAAAACVIEDQ6MTZ6BK5KEF4X4P3GZ2RUMVQ) 
+![Command Output](https://raw.githubusercontent.com/taylorhelene/challenge/refs/heads/main/images/usage.PNG?token=GHSAT0AAAAAACVIEDQ6Y3HBQAYURKKT5OJQZ2RUMNQ) 
 
 - step one is running the test file
 - step two is initializing a repo within the folder, you cannot init the same repo twice
@@ -724,8 +724,11 @@ Exiting program.
 ```
 
 
-![Command Output](images/vcs-logo.png) 
-![Command Output](images/vcs-logo.png) 
+![Command Output](https://raw.githubusercontent.com/taylorhelene/challenge/refs/heads/main/images/interactive.PNG?token=GHSAT0AAAAAACVIEDQ7OMKLCLWWXDW2RA7UZ2RUOTA) 
+![Command Output](https://raw.githubusercontent.com/taylorhelene/challenge/refs/heads/main/images/interactive%202.PNG?token=GHSAT0AAAAAACVIEDQ6U6N33JT6IXPXO64GZ2RUPDA) 
+
+
+![VS Code](https://raw.githubusercontent.com/taylorhelene/challenge/refs/heads/main/images/setup.PNG?token=GHSAT0AAAAAACVIEDQ6GYUIYR62EN4TR6YIZ2RUQRQ) 
 
 #### Packaging the repo and runnig the .exe 
 
@@ -733,6 +736,9 @@ Exiting program.
 pip install pyinstaller
 pyinstaller --onefile src/vcs.py
 ```
+
+![Dist folder](images/vcs-logo.png) 
+
 The folder will be built inside the dist folder,here is the video of how i ran the .exe file afterwards.
 
-[![Demo Video](<thumbnail-image-path>)](<video-url>)  
+![Demo Video](https://youtu.be/Av-Fa15qIc0)  
