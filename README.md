@@ -740,4 +740,4 @@ pyinstaller --onefile src/vcs.py
 
 The folder will be built inside the dist folder,here is the video of how i ran the .exe file afterwards.
 
-[![Running file](https://raw.githubusercontent.com/taylorhelene/challenge/refs/heads/main/images/package.PNG)](https://www.youtube.com/watch?v=Av-Fa15qIc0)
+Here is link to the video of how I ran the package.exe. It cannot be accessed in github because the file is too large : https://www.youtube.com/watch?v=Av-Fa15qIc0
