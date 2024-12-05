@@ -741,4 +741,4 @@ pyinstaller --onefile src/vcs.py
 The folder will be built inside the dist folder,here is the video of how i ran the .exe file afterwards.
 
 ![Demo Video](https://youtu.be/Av-Fa15qIc0)  
-{{EmbedYouTube("https://youtu.be/Av-Fa15qIc0")}}
+{{EmbedYouTube(https://youtu.be/Av-Fa15qIc0)}}
