@@ -1,0 +1,20 @@
+{
+    "main": [
+        {
+            "file": "test.txt",
+            "content": ""
+        }
+    ],
+    "this": [
+        {
+            "file": "test.txt",
+            "content": ""
+        }
+    ],
+    "feature": [
+        {
+            "file": "test.txt",
+            "content": ""
+        }
+    ]
+}

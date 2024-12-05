@@ -6,6 +6,9 @@ import argparse
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 
+import sys
+import os
+import argparse
 from src.repo import Repository
 from src.utils import display_progress, display_message
 from colorama import Fore, Style, init
@@ -17,6 +20,35 @@ def get_input(prompt, default=None):
     """Function to ask for user input with a default."""
     user_input = input(f"{prompt} [{default}]: ").strip()
     return user_input or default
+
+def execute_command_in_shell(command):
+    """Function to handle shell-like commands such as file creation or navigation."""
+    if command.startswith("touch "):  # Create a new file
+        file_name = command.split(" ", 1)[1]
+        with open(file_name, 'w') as f:
+            f.write("")
+        print(Fore.GREEN + f"File '{file_name}' created.")
+    elif command.startswith("cd "):  # Change directory
+        dir_path = command.split(" ", 1)[1]
+        try:
+            os.chdir(dir_path)
+            print(Fore.GREEN + f"Changed directory to {os.getcwd()}")
+        except FileNotFoundError:
+            print(Fore.RED + f"Directory '{dir_path}' not found.")
+    elif command == "pwd":  # Print working directory
+        print(Fore.GREEN + f"Current directory: {os.getcwd()}")
+    elif command == "ls":  # List files in current directory
+        files = os.listdir(os.getcwd())
+        print(Fore.GREEN + "\n".join(files))
+    elif command.startswith("rm "):  # Remove file
+        file_name = command.split(" ", 1)[1]
+        try:
+            os.remove(file_name)
+            print(Fore.GREEN + f"File '{file_name}' removed.")
+        except FileNotFoundError:
+            print(Fore.RED + f"File '{file_name}' not found.")
+    else:
+        print(Fore.RED + "Invalid shell command.")
 
 def main():
     print(Fore.CYAN + "Welcome to the Python-based Distributed Version Control System\n")
@@ -82,87 +114,101 @@ def main():
     if not args.command:
         print(Fore.YELLOW + "No command passed. Switching to interactive mode.")
         while True:
-            print(Fore.MAGENTA + "Choose an action: init, add, commit, branch, switch_branch, clone, log, merge, diff, ignore, view_ignore_list, or exit")
-            command = input(Fore.GREEN + "Command: ").strip().lower()
+            try:
+                print(Fore.MAGENTA + f"Current directory: {os.getcwd()}")
+                print(Fore.MAGENTA + "Choose an action: init, add, commit, branch, switch_branch, clone, log, merge, diff, ignore, view_ignore_list, shell (to enter shell mode), or exit")
+                command = input(Fore.GREEN + "Command: ").strip().lower()
 
-            if command == "init":
-                repo_name = get_input("Enter repository name", "my_repo")
-                repo = Repository(repo_name)
-                repo.create_repo()
-                print(Fore.GREEN + f"Repository '{repo_name}' initialized.")
-            elif command == "add":
-                repo_name = get_input("Enter repository name")
-                file_name = get_input("Enter file name")
-                repo = Repository(repo_name)
-                repo.add(file_name)
-                print(Fore.GREEN + f"File '{file_name}' staged.")
-            elif command == "commit":
-                repo_name = get_input("Enter repository name")
-                message = get_input("Enter commit message")
-                repo = Repository(repo_name)
-                repo.commit(message)
-                display_progress("Committing changes", steps=3)
-                print(Fore.GREEN + f"Commit added: {message}")
-            elif command == "branch":
-                repo_name = get_input("Enter repository name")
-                branch_name = get_input("Enter branch name")
-                repo = Repository(repo_name)
-                repo.create_branch(branch_name)
-                print(Fore.GREEN + f"Branch '{branch_name}' created.")
-            elif command == "switch_branch":
-                repo_name = get_input("Enter repository name")
-                branch_name = get_input("Enter branch name")
-                repo = Repository(repo_name)
-                repo.switch_branch(branch_name)
-                print(Fore.GREEN + f"Switched to branch '{branch_name}'.")
-            elif command == "clone":
-                repo_name = get_input("Enter repository name")
-                new_name = get_input("Enter new repository name")
-                repo = Repository(repo_name)
-                repo.clone(new_name)
-                display_progress("Cloning repository", steps=5)
-                print(Fore.GREEN + f"Repository '{repo_name}' cloned as '{new_name}'.")
-            elif command == "log":
-                repo_name = get_input("Enter repository name")
-                repo = Repository(repo_name)
-                history = repo.view_commit_history()
-                print(Fore.CYAN + "Commit History:")
-                for commit in history:
-                    print(Fore.YELLOW + f" - {commit['date']}: {commit['message']}")
-            elif command == "merge":
-                repo_name = get_input("Enter repository name")
-                branch_name = get_input("Enter branch to merge")
-                repo = Repository(repo_name)
-                try:
-                    repo.merge(branch_name)
-                    print(Fore.GREEN + f"Branch '{branch_name}' merged successfully.")
-                except Exception as e:
-                    print(Fore.RED + str(e))
-            elif command == "diff":
-                repo_name = get_input("Enter repository name")
-                branch_name = get_input("Enter branch to compare")
-                repo = Repository(repo_name)
-                diff = repo.diff(branch_name)
-                print(Fore.CYAN + "Differences:")
-                print(Fore.YELLOW + diff)
-            elif command == "ignore":
-                repo_name = get_input("Enter repository name")
-                file_name = get_input("Enter file to ignore")
-                repo = Repository(repo_name)
-                repo.ignore(file_name)
-                print(Fore.GREEN + f"File '{file_name}' added to the ignore list.")
-            elif command == "view_ignore_list":
-                repo_name = get_input("Enter repository name")
-                repo = Repository(repo_name)
-                ignored_files = repo.view_ignore_list()
-                print(Fore.CYAN + "Ignored Files:")
-                for file in ignored_files:
-                    print(Fore.YELLOW + f" - {file}")
-            elif command == "exit":
-                print(Fore.RED + "Exiting program.")
-                break
-            else:
-                print(Fore.RED + "Invalid command, please try again.")
+                if command == "init":
+                    repo_name = get_input("Enter repository name", "my_repo")
+                    repo = Repository(repo_name)
+                    repo.create_repo()
+                    print(Fore.GREEN + f"Repository '{repo_name}' initialized.")
+                elif command == "add":
+                    repo_name = get_input("Enter repository name")
+                    file_name = get_input("Enter file name")
+                    repo = Repository(repo_name)
+                    repo.add(file_name)
+                    print(Fore.GREEN + f"File '{file_name}' staged.")
+                elif command == "commit":
+                    repo_name = get_input("Enter repository name")
+                    message = get_input("Enter commit message")
+                    repo = Repository(repo_name)
+                    repo.commit(message)
+                    display_progress("Committing changes", steps=3)
+                    print(Fore.GREEN + f"Commit added: {message}")
+                elif command == "branch":
+                    repo_name = get_input("Enter repository name")
+                    branch_name = get_input("Enter branch name")
+                    repo = Repository(repo_name)
+                    repo.create_branch(branch_name)
+                    print(Fore.GREEN + f"Branch '{branch_name}' created.")
+                elif command == "switch_branch":
+                    repo_name = get_input("Enter repository name")
+                    branch_name = get_input("Enter branch name")
+                    repo = Repository(repo_name)
+                    repo.switch_branch(branch_name)
+                    print(Fore.GREEN + f"Switched to branch '{branch_name}'.")
+                elif command == "clone":
+                    repo_name = get_input("Enter repository name")
+                    new_name = get_input("Enter new repository name")
+                    repo = Repository(repo_name)
+                    repo.clone(new_name)
+                    display_progress("Cloning repository", steps=5)
+                    print(Fore.GREEN + f"Repository '{repo_name}' cloned as '{new_name}'.")
+                elif command == "log":
+                    repo_name = get_input("Enter repository name")
+                    repo = Repository(repo_name)
+                    history = repo.view_commit_history()
+                    print(Fore.CYAN + "Commit History:")
+                    for commit in history:
+                        print(Fore.YELLOW + f" - {commit['date']}: {commit['message']}")
+                elif command == "merge":
+                    repo_name = get_input("Enter repository name")
+                    branch_name = get_input("Enter branch to merge")
+                    repo = Repository(repo_name)
+                    try:
+                        repo.merge(branch_name)
+                        print(Fore.GREEN + f"Branch '{branch_name}' merged successfully.")
+                    except Exception as e:
+                        print(Fore.RED + str(e))
+                elif command == "diff":
+                    repo_name = get_input("Enter repository name")
+                    branch_name = get_input("Enter branch to compare")
+                    repo = Repository(repo_name)
+                    diff = repo.diff(branch_name)
+                    print(Fore.CYAN + "Differences:")
+                    print(Fore.YELLOW + diff)
+                elif command == "ignore":
+                    repo_name = get_input("Enter repository name")
+                    file_name = get_input("Enter file to ignore")
+                    repo = Repository(repo_name)
+                    repo.ignore(file_name)
+                    print(Fore.GREEN + f"File '{file_name}' added to the ignore list.")
+                elif command == "view_ignore_list":
+                    repo_name = get_input("Enter repository name")
+                    repo = Repository(repo_name)
+                    ignored_files = repo.view_ignore_list()
+                    print(Fore.CYAN + "Ignored Files:")
+                    for file in ignored_files:
+                        print(Fore.YELLOW + f" - {file}")
+                elif command == "shell":
+                    print(Fore.YELLOW + "Entering shell mode. You can now use commands like 'touch', 'cd', 'ls', 'rm'. Type 'exit' to leave shell mode.")
+                    while True:
+                        shell_command = input(Fore.GREEN + "Shell Command: ").strip().lower()
+                        if shell_command == "exit":
+                            break
+                        try:
+                            execute_command_in_shell(shell_command)
+                        except Exception as shell_error:
+                            print(Fore.RED + f"Shell Error: {shell_error}")
+                elif command == "exit":
+                    print(Fore.RED + "Exiting program.")
+                    break
+                else:
+                    print(Fore.RED + "Invalid command, please try again.")
+            except Exception as main_error:
+                print(Fore.RED + f"Error: {main_error}")
         return
 
     # Execute commands based on parsed arguments
