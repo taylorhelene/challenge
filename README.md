@@ -1,9 +1,10 @@
 # Source Control System
 
 ## Description
-This project is a custom version control system that provides functionalities similar to Git. It is a lightweight alternative for tracking changes, managing branches, and maintaining a repository's history. The system allows users to initialize repositories, commit changes, create and manage branches, merge them, and view diffs between commits. Additionally, it supports ignoring files and provides both an interactive shell and non-interactive command-line mode for user convenience. This will be packaged and run as an .exe file in from the dist folder
+This project is a custom version control system that provides functionalities similar to Git. It is a lightweight alternative for tracking changes, managing branches, and maintaining a repository's history. The system allows users to initialize repositories, commit changes, create and manage branches, merge them, and view diffs between commits. Additionally, it supports ignoring files and provides both an interactive shell and non-interactive command-line mode for user convenience. This will be packaged and run as an .exe file in from the dist folder.
 
-For this repo, I have pushed all the repos I created using this code for confirmation, in order to follow the steps provided, remove these folders: clone,my_repo, repo. The .exe file will be overwritten.
+**Please note ⚠**
+For this repo, I have pushed all the repos I created using this code for confirmation, in order to follow these steps provided for usage, remove these folders after cloning this repository: clone, my_repo , repo. The .exe file will be overwritten.
 
 ## Features that are intergrated
 
