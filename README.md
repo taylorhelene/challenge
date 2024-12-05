@@ -37,6 +37,7 @@ For this repo, I have pushed all the repos I created using this code for confirm
 9. **Non-Interactive Mode**:
    - Run commands directly from the terminal for scripting purposes.
 
+The interactive mode is a feature I thought to intergrate for easy mode when the project is run as a .exe file
 
 ## Project Set-Up and Run documentation 
 
@@ -741,4 +742,4 @@ pyinstaller --onefile src/vcs.py
 
 The folder will be built inside the dist folder,here is the video of how i ran the .exe file afterwards.
 
-![Demo Video](https://youtu.be/Av-Fa15qIc0)  
+[Demo Video](https://youtu.be/Av-Fa15qIc0)  
