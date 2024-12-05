@@ -1,0 +1,18 @@
+{
+    "main": [
+        {
+            "file": "test.txt",
+            "content": ""
+        }
+    ],
+    "another": [
+        {
+            "file": "test.txt",
+            "content": ""
+        },
+        {
+            "file": "test2.txt",
+            "content": ""
+        }
+    ]
+}

@@ -5,13 +5,7 @@
             "content": ""
         }
     ],
-    "this": [
-        {
-            "file": "test.txt",
-            "content": ""
-        }
-    ],
-    "feature": [
+    "new": [
         {
             "file": "test.txt",
             "content": ""

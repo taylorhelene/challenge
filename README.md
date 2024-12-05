@@ -1,5 +1,6 @@
 # Source Control System
 
+## Description
 
 ## Setup Python Environment
 
@@ -221,41 +222,8 @@ Generate Documentation: You can use Sphinx to generate detailed documentation fo
 
 
 
-C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py create_branch my_repo feature_branch
-Welcome to the Python-based Distributed Version Control System
-
-Branch 'feature_branch' created.
-
-C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py switch_branch my_repo feature_branch
-Welcome to the Python-based Distributed Version Control System
-
-Switched to branch 'feature_branch'.
-
-C:\Users\user\Desktop\Utest2\challenge>echo "Hello Feature" > my_repo/feature.txt
-
-C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py add my_repo feature.txt
-Welcome to the Python-based Distributed Version Control System
-
-File 'feature.txt' staged.
-
-C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py commit my_repo "Add feature.txt"
-Welcome to the Python-based Distributed Version Control System
-
-Committing changes...
-... Done!
-Commit added: Add feature.txt
-
-C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py log my_repo
-Welcome to the Python-based Distributed Version Control System
-
-usage: vcs.py [-h] {init,add,commit,create_branch,switch_branch,diff} ...
-vcs.py: error: argument command: invalid choice: 'log' (choose from 'init', 'add', 'commit', 'create_branch', 'switch_branch', 'diff')
-
-C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py log my_repo
-Traceback (most recent call last):
-  File "C:\Users\user\Desktop\Utest2\challenge\src\vcs.py", line 4, in <module>
-    from src.repo import Repository
-ModuleNotFoundError: No module named 'src'
+Microsoft Windows [Version 10.0.19045.5131]
+(c) Microsoft Corporation. All rights reserved.
 
 C:\Users\user\Desktop\Utest2\challenge>python -m unittest tests/test_vcs.py
 C:\Users\user\Desktop\Utest2\challenge\src\repo.py:48: ResourceWarning: unclosed file <_io.TextIOWrapper name='test_repo\\.vcs\\active_branch.txt' mode='w' encoding='cp1252'>
@@ -263,23 +231,7 @@ C:\Users\user\Desktop\Utest2\challenge\src\repo.py:48: ResourceWarning: unclosed
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ....
 ----------------------------------------------------------------------
-Ran 4 tests in 0.309s
-
-OK
-
-C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py init my_repo
-Traceback (most recent call last):
-  File "C:\Users\user\Desktop\Utest2\challenge\src\vcs.py", line 4, in <module>
-    from src.repo import Repository
-ModuleNotFoundError: No module named 'src'
-
-C:\Users\user\Desktop\Utest2\challenge>python -m unittest tests/test_vcs.py
-C:\Users\user\Desktop\Utest2\challenge\src\repo.py:48: ResourceWarning: unclosed file <_io.TextIOWrapper name='test_repo\\.vcs\\active_branch.txt' mode='w' encoding='cp1252'>
-  open(self.active_branch_file, 'w').write("main")
-ResourceWarning: Enable tracemalloc to get the object allocation traceback
-....
-----------------------------------------------------------------------
-Ran 4 tests in 0.110s
+Ran 4 tests in 0.910s
 
 OK
 
@@ -290,28 +242,10 @@ Repository 'my_repo' initialized.
 
 C:\Users\user\Desktop\Utest2\challenge>echo "Initial content" > my_repo/file1.txt
 
-C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py add my_repo/file1.txt
-Welcome to the Python-based Distributed Version Control System
-
-usage: vcs.py add [-h] repo_name file_name
-vcs.py add: error: the following arguments are required: file_name
-
-C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py add my_repo/file1.txt
-Welcome to the Python-based Distributed Version Control System
-
-usage: vcs.py add [-h] repo_name file_name
-vcs.py add: error: the following arguments are required: file_name
-
 C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py add my_repo file1.txt
 Welcome to the Python-based Distributed Version Control System
 
 File 'file1.txt' staged.
-
-C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py commit "Add file2.txt to feature branch"
-Welcome to the Python-based Distributed Version Control System
-
-usage: vcs.py commit [-h] repo_name message
-vcs.py commit: error: the following arguments are required: message
 
 C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py commit my_repo "Initial commit"
 Welcome to the Python-based Distributed Version Control System
@@ -319,12 +253,6 @@ Welcome to the Python-based Distributed Version Control System
 Committing changes...
 ... Done!
 Commit added: Initial commit
-
-C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py create_branch my_repo feature_branch
-Welcome to the Python-based Distributed Version Control System
-
-usage: vcs.py [-h] {init,add,commit,branch,switch_branch,clone,log,merge,diff,ignore,view_ignore_list} ...
-vcs.py: error: argument command: invalid choice: 'create_branch' (choose from 'init', 'add', 'commit', 'branch', 'switch_branch', 'clone', 'log', 'merge', 'diff', 'ignore', 'view_ignore_list')
 
 C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py branch my_repo feature_branch
 Welcome to the Python-based Distributed Version Control System
@@ -336,17 +264,12 @@ Welcome to the Python-based Distributed Version Control System
 
 Switched to branch 'feature_branch'.
 
-C:\Users\user\Desktop\Utest2\challenge>echo "Hello Feature Branch" > my_repo/featue.txt
+C:\Users\user\Desktop\Utest2\challenge>echo "Hello Feature Branch" > my_repo/feature.txt
 
 C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py add my_repo feature.txt
 Welcome to the Python-based Distributed Version Control System
 
-File 'feature.txt' not found in repository directory.
-
-C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py add my_repo featue.txt
-Welcome to the Python-based Distributed Version Control System
-
-File 'featue.txt' staged.
+File 'feature.txt' staged.
 
 C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py commit my_repo " commit"
 Welcome to the Python-based Distributed Version Control System
@@ -359,75 +282,166 @@ C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py diff my_repo main
 Welcome to the Python-based Distributed Version Control System
 
 Differences:
-Files removed in main: featue.txt
+Files removed in main: feature.txt
 
-C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py merge feature_branch
+C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py ignore my_repo feature.txt
 Welcome to the Python-based Distributed Version Control System
 
-usage: vcs.py merge [-h] repo_name branch_name
-vcs.py merge: error: the following arguments are required: branch_name
+File 'feature.txt' added to the ignore list.
 
-C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py my_repo merge main feature_branch
+C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py view_ignore_list my_repo
 Welcome to the Python-based Distributed Version Control System
 
-usage: vcs.py [-h] {init,add,commit,branch,switch_branch,clone,log,merge,diff,ignore,view_ignore_list} ...
-vcs.py: error: argument command: invalid choice: 'my_repo' (choose from 'init', 'add', 'commit', 'branch', 'switch_branch', 'clone', 'log', 'merge', 'diff', 'ignore', 'view_ignore_list')
+Ignored Files:
+ - feature.txt
 
-C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py  merge my_repo  main feature_branch
-Welcome to the Python-based Distributed Version Control System
-
-usage: vcs.py [-h] {init,add,commit,branch,switch_branch,clone,log,merge,diff,ignore,view_ignore_list} ...
-vcs.py: error: unrecognized arguments: feature_branch
-
-C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py  merge my_repo  main
+C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py merge my_repo main
 Welcome to the Python-based Distributed Version Control System
 
 Branch 'main' merged successfully.
-
-C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py log
-Welcome to the Python-based Distributed Version Control System
-
-usage: vcs.py log [-h] repo_name
-vcs.py log: error: the following arguments are required: repo_name
-
-C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py my_repo log
-Welcome to the Python-based Distributed Version Control System
-
-usage: vcs.py [-h] {init,add,commit,branch,switch_branch,clone,log,merge,diff,ignore,view_ignore_list} ...
-vcs.py: error: argument command: invalid choice: 'my_repo' (choose from 'init', 'add', 'commit', 'branch', 'switch_branch', 'clone', 'log', 'merge', 'diff', 'ignore', 'view_ignore_list')
 
 C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py log  my_repo
 Welcome to the Python-based Distributed Version Control System
 
 Commit History:
- - 2024-12-04 18:18:19: Initial commit
- - 2024-12-04 18:21:17:  commit
+ - 2024-12-05 10:52:12: Initial commit
+ - 2024-12-05 10:54:37:  commit
 
-C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py ignore list
-Welcome to the Python-based Distributed Version Control System
-
-usage: vcs.py ignore [-h] repo_name file_name
-vcs.py ignore: error: the following arguments are required: file_name
-
-C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py my_repo  ignore list
-Welcome to the Python-based Distributed Version Control System
-
-usage: vcs.py [-h] {init,add,commit,branch,switch_branch,clone,log,merge,diff,ignore,view_ignore_list} ...
-vcs.py: error: argument command: invalid choice: 'my_repo' (choose from 'init', 'add', 'commit', 'branch', 'switch_branch', 'clone', 'log', 'merge', 'diff', 'ignore', 'view_ignore_list')
-
-C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py ignore my_repo list
-Welcome to the Python-based Distributed Version Control System
-
-File 'list' added to the ignore list.
-
-C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py clone my_repo my_repo_clone
+C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py clone  my_repo clone
 Welcome to the Python-based Distributed Version Control System
 
 Cloning repository...
 ..... Done!
-Repository 'my_repo' cloned as 'my_repo_clone'.
+Repository 'my_repo' cloned as 'clone'.
 
 C:\Users\user\Desktop\Utest2\challenge>
 
+C:\Users\user\Desktop\Utest2\challenge>pyinstaller --onefile src/vcs.py
+6445 INFO: PyInstaller: 6.11.1, contrib hooks: 2024.10
+6447 INFO: Python: 3.13.0
+6502 INFO: Platform: Windows-10-10.0.19045-SP0
+6502 INFO: Python environment: C:\Users\user\AppData\Local\Programs\Python\Python313
+6542 INFO: wrote C:\Users\user\Desktop\Utest2\challenge\vcs.spec
+6586 INFO: Module search paths (PYTHONPATH):
+['C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\pyinstaller.exe',
+ 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python313.zip',
+ 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\DLLs',
+ 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\Lib',
+ 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313',
+ 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages',
+ 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\setuptools\\_vendor',
+ 'C:\\Users\\user\\Desktop\\Utest2\\challenge']
+8337 INFO: checking Analysis
+8641 INFO: Building because C:\Users\user\Desktop\Utest2\challenge\src\vcs.py changed
+8642 INFO: Running Analysis Analysis-00.toc
+8642 INFO: Target bytecode optimization level: 0
+8643 INFO: Initializing module dependency graph...
+8659 INFO: Initializing module graph hook caches...
+9588 INFO: Analyzing base_library.zip ...
+13807 INFO: Processing standard module hook 'hook-encodings.py' from 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks'
+16144 INFO: Processing standard module hook 'hook-heapq.py' from 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks'
+21295 INFO: Processing standard module hook 'hook-pickle.py' from 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks'
+30502 INFO: Caching module dependency graph...
+30708 INFO: Looking for Python shared library...
+30720 INFO: Using Python shared library: C:\Users\user\AppData\Local\Programs\Python\Python313\python313.dll
+30720 INFO: Analyzing C:\Users\user\Desktop\Utest2\challenge\src\vcs.py
+30960 INFO: Processing standard module hook 'hook-difflib.py' from 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks'
+31498 INFO: Processing module hooks (post-graph stage)...
+31507 INFO: Performing binary vs. data reclassification (2 entries)
+31696 INFO: Looking for ctypes DLLs
+31721 INFO: Analyzing run-time hooks ...
+31725 INFO: Including run-time hook 'pyi_rth_inspect.py' from 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+31812 INFO: Looking for dynamic libraries
+32208 INFO: Extra DLL search directories (AddDllDirectory): []
+32209 INFO: Extra DLL search directories (PATH): []
+33080 INFO: Warnings written to C:\Users\user\Desktop\Utest2\challenge\build\vcs\warn-vcs.txt
+33127 INFO: Graph cross-reference written to C:\Users\user\Desktop\Utest2\challenge\build\vcs\xref-vcs.html
+33195 INFO: checking PYZ
+33353 INFO: checking PKG
+33422 INFO: Building because C:\Users\user\Desktop\Utest2\challenge\src\vcs.py changed
+33423 INFO: Building PKG (CArchive) vcs.pkg
+36141 INFO: Building PKG (CArchive) vcs.pkg completed successfully.
+36143 INFO: Bootloader C:\Users\user\AppData\Local\Programs\Python\Python313\Lib\site-packages\PyInstaller\bootloader\Windows-64bit-intel\run.exe
+36145 INFO: checking EXE
+36443 INFO: Rebuilding EXE-00.toc because pkg is more recent
+36443 INFO: Building EXE from EXE-00.toc
+36446 INFO: Copying bootloader EXE to C:\Users\user\Desktop\Utest2\challenge\dist\vcs.exe
+39518 INFO: Copying icon to EXE
+39793 INFO: Copying 0 resources to EXE
+39794 INFO: Embedding manifest in EXE
+39988 INFO: Appending PKG archive to EXE
+40083 INFO: Fixing EXE headers
+41741 INFO: Building EXE from EXE-00.toc completed successfully.
 
+C:\Users\user\Desktop\Utest2\challenge>python src/vcs.py
+Welcome to the Python-based Distributed Version Control System
+
+No command passed. Switching to interactive mode.
+Current directory: C:\Users\user\Desktop\Utest2\challenge
+Choose an action: init, add, commit, branch, switch_branch, clone, log, merge, diff, ignore, view_ignore_list, shell (to enter shell mode), or exit
+Command: init
+Enter repository name [my_repo]: repo
+Repository 'repo' initialized.
+Current directory: C:\Users\user\Desktop\Utest2\challenge
+Choose an action: init, add, commit, branch, switch_branch, clone, log, merge, diff, ignore, view_ignore_list, shell (to enter shell mode), or exit
+Command: shell
+Entering shell mode. You can now use commands like 'touch', 'cd', 'ls', 'rm'. Type 'exit' to leave shell mode.
+Shell Command: cd repo
+Changed directory to C:\Users\user\Desktop\Utest2\challenge\repo
+Shell Command: touch test.txt
+File 'test.txt' created.
+Shell Command: cd ..
+Changed directory to C:\Users\user\Desktop\Utest2\challenge
+Shell Command: exit
+Current directory: C:\Users\user\Desktop\Utest2\challenge
+Choose an action: init, add, commit, branch, switch_branch, clone, log, merge, diff, ignore, view_ignore_list, shell (to enter shell mode), or exit
+Command: add
+Enter repository name [None]: repo
+Enter file name [None]: test.txt
+File 'test.txt' staged.
+Current directory: C:\Users\user\Desktop\Utest2\challenge
+Choose an action: init, add, commit, branch, switch_branch, clone, log, merge, diff, ignore, view_ignore_list, shell (to enter shell mode), or exit
+Command: commit
+Enter repository name [None]: repo
+Enter commit message [None]: first
+Committing changes...
+... Done!
+Commit added: first
+Current directory: C:\Users\user\Desktop\Utest2\challenge
+Choose an action: init, add, commit, branch, switch_branch, clone, log, merge, diff, ignore, view_ignore_list, shell (to enter shell mode), or exit
+Command: branch
+Enter repository name [None]: repo
+Enter branch name [None]: new
+Branch 'new' created.
+Current directory: C:\Users\user\Desktop\Utest2\challenge
+Choose an action: init, add, commit, branch, switch_branch, clone, log, merge, diff, ignore, view_ignore_list, shell (to enter shell mode), or exit
+Command: switch_branch
+Enter repository name [None]: repo
+Enter branch name [None]: new
+Switched to branch 'new'.
+Current directory: C:\Users\user\Desktop\Utest2\challenge
+Choose an action: init, add, commit, branch, switch_branch, clone, log, merge, diff, ignore, view_ignore_list, shell (to enter shell mode), or exit
+Command: diff
+Enter repository name [None]: repo
+Enter branch to compare [None]: main
+Differences:
+No differences.
+Current directory: C:\Users\user\Desktop\Utest2\challenge
+Choose an action: init, add, commit, branch, switch_branch, clone, log, merge, diff, ignore, view_ignore_list, shell (to enter shell mode), or exit
+Command: ignore
+Enter repository name [None]: repo
+Enter file to ignore [None]: test.txt
+File 'test.txt' added to the ignore list.
+Current directory: C:\Users\user\Desktop\Utest2\challenge
+Choose an action: init, add, commit, branch, switch_branch, clone, log, merge, diff, ignore, view_ignore_list, shell (to enter shell mode), or exit
+Command: view_ignore_list
+Enter repository name [None]: repo
+Ignored Files:
+ - test.txt
+Current directory: C:\Users\user\Desktop\Utest2\challenge
+Choose an action: init, add, commit, branch, switch_branch, clone, log, merge, diff, ignore, view_ignore_list, shell (to enter shell mode), or exit
+Command: exit
+Exiting program.
+
+C:\Users\user\Desktop\Utest2\challenge>
 
